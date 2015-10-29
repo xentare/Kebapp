@@ -6,7 +6,7 @@
  * Time: 18:18
  */
 
-require_once(__DIR__.'/config.php');
+require_once(__DIR__.'/config.php');////PHP commit change test
 
 $conn = $MY_DB->connect();
 
