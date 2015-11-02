@@ -27,7 +27,7 @@ unset($args[0],$args[1],$args[2],$args[3]);
 $endpoint = array_shift($args);
 
 
-if($_SERVER['REQUEST_METHOD'] === 'PUT') {
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     if($endpoint == 'restaurant'){
         echo restaurantQuery($args);
@@ -56,6 +56,11 @@ function restaurantPostQuery(){
         $statement = $mysqli->prepare($query);
         $statement->bind_param('sdds',$_POST['name'],$_POST['latitude'],$_POST['longitude'],$_POST['address']);
         $statement->execute();
+        if($mysqli->error){
+            echo $mysqli->error;
+        } else {
+            echo "POST successful!";
+        }
         $mysqli->close();
     }
 }
@@ -64,7 +69,7 @@ function restaurantQuery($args){
 
     $MY_DB = new DATABASE_CONNECT();
     $mysqli = $MY_DB->connect();
-    $mysqli->real_escape_string($args[0]);
+    //$mysqli->real_escape_string($args[0]);
 
     if(!isset($args[0])){
         $query = "SELECT * FROM restaurants";
@@ -81,6 +86,7 @@ function fetch($result){
     while($r = mysqli_fetch_assoc($result)) {
         $rows[] = $r;
     }
+    header('Content-type: application/json');
     return json_encode($rows);
 }
 
