@@ -25,28 +25,33 @@ import java.util.Map;
  */
 public class HttpRequest{
 
-    public void getRestaurants(Context context){
+    //Callback interface for HTTP responses
+    public interface VolleyCallback{
+        void onSuccess(String result);
+    }
 
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url ="http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant/4";
+    /*
+    * Uses Volley to send HTTP request. Implements callback interface to handle responses
+     */
+    public static void getRestaurants(Context context, final VolleyCallback callback){
 
-        // Request a string response from the provided URL.
+        String url ="http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant";
+            RequestQueue queue = Volley.newRequestQueue(context);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("VolleyResponse", response);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d("VolleyErrorResponse", error.getMessage());
-                }
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("VolleyResponse", response);
+                        callback.onSuccess(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("VolleyErrorResponse", ""+error.getMessage());
             }
-            );
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        }
+        );
+            queue.add(stringRequest);
     }
 
     public void httpPostRequest(Context context){
