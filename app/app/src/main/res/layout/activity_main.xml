@@ -1,16 +1,26 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">!-->
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/mapFragment"
-        tools:context=".MapsActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    android:layout_width="match_parent">
 
-    <!--<ImageButton
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/mapFragment"
+            tools:context=".MapsActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_gravity="bottom|center"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+        android:id="@+id/OverlayFragment"
+        android:name="com.example.juha.kebapp.OverlayFragment"
+        />
+    <ImageButton
         android:onClick="onClickGPS"
         android:src="@drawable/ic_gps_fixed_black_24dp"
         android:id="@+id/gpsButton"
@@ -18,21 +28,22 @@
         android:layout_height="50dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:background="@drawable/roundcorner"/>!-->
-    <Button
-        android:onClick="onClickGPS"
+        android:background="@drawable/roundcorner"/>
+   <Button
+        android:onClick="onclickOpenFragment"
         android:src="@drawable/ic_gps_fixed_black_24dp"
-        android:id="@+id/gpsButton"
-        android:text="Where is the best kebab place?"
+        android:id="@+id/fragmentButton"
+        android:text="Open fragment"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginBottom="10dp"
-        android:layout_gravity="bottom|center_horizontal" />
-    <TextView
+        android:layout_gravity="top|center_horizontal" />
+
+    <!--<TextView
         android:id="@+id/requestTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"/>
+        android:layout_gravity="center_horizontal|center_vertical"/>!-->
 
 </FrameLayout>
 

@@ -2,8 +2,10 @@ package com.example.juha.kebapp;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.internal.IGoogleMapDelegate;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
@@ -22,7 +24,14 @@ public class MapHandler {
                 .position(latLng)
                 .title("Here, Evin is here!!");
         map.addMarker(options);
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                return false;
+            }
+        });
     }
 
 }

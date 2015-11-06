@@ -25,12 +25,14 @@ import java.util.Map;
  */
 public class HttpRequest{
 
-    //Callback interface for HTTP responses
+    /**
+     * Callback interface for HTTP responses
+     */
     public interface VolleyCallback{
         void onSuccess(String result);
     }
 
-    /*
+    /**
     * Uses Volley to send HTTP request. Implements callback interface to handle responses
      */
     public static void getRestaurants(Context context, final VolleyCallback callback){
