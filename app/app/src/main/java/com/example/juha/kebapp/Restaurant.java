@@ -6,19 +6,21 @@ package com.example.juha.kebapp;
  */
 public class Restaurant {
 
-    private int id;
-    private String name;
-    private String address;
-    private Double latitude;
-    private Double longitude;
+    public int id;
+    public int stars;
+    public String name;
+    public String address;
+    public Double latitude;
+    public Double longitude;
 
 
-    public Restaurant(int id, String name, String address, Double latitude, Double longitude){
+    public Restaurant(int id, String name, String address, Double latitude, Double longitude, int stars){
         this.id = id;
         this.name = name;
         this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.stars = stars;
     }
 
 }

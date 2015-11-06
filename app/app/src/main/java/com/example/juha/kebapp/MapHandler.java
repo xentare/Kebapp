@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by Juha on 3.11.2015.
  */
-public class MapHandler {
+public class MapHandler implements GoogleMap.OnMarkerClickListener {
 
     GoogleMap map;
 
@@ -19,19 +19,17 @@ public class MapHandler {
         this.map = map;
     }
 
-    public void addRestaurant(LatLng latLng){
+    public void addRestaurant(LatLng latLng, String name, int rating){
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
-                .title("Here, Evin is here!!");
+                .title(name)
+                .snippet("Stars: "+Integer.toString(rating));
         map.addMarker(options);
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-
-                return false;
-            }
-        });
+        map.setOnMarkerClickListener(this);
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
 }

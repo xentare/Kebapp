@@ -35,9 +35,8 @@ public class HttpRequest{
     /**
     * Uses Volley to send HTTP request. Implements callback interface to handle responses
      */
-    public static void getRestaurants(Context context, final VolleyCallback callback){
+    public static void httpGetRequest(Context context, String url, final VolleyCallback callback){
 
-        String url ="http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant";
             RequestQueue queue = Volley.newRequestQueue(context);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

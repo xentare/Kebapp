@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     HttpRequest httpRequest;
     GoogleMap map;
     MapHandler mapHandler;
+    DataHandler dataHandler;
 
 
     /**
@@ -64,7 +66,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void initCamera(){
         Log.d("MAP", "Moving camera to my location");
         if(gpsTracker.canGetLocation) {
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gpsTracker.latitude, gpsTracker.longitude), 15));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gpsTracker.latitude, gpsTracker.longitude), 13));
             map.setOnMyLocationChangeListener(null);
         }
     }
@@ -73,6 +75,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dataHandler = new DataHandler(getApplicationContext());
         g = (Globals)getApplication();
         gpsTracker = new GPSTracker(getApplicationContext());
         requestPermissions();
@@ -146,7 +149,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void onClickGPS(View view) {
-        HttpRequest.getRestaurants(getApplicationContext(), new HttpRequest.VolleyCallback() {
+        HttpRequest.httpGetRequest(getApplicationContext(), new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 //TextView textView = (TextView)findViewById(R.id.requestTextView);
