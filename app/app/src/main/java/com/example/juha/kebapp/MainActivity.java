@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.PersistableBundle;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -45,6 +46,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap map) {
         this.map = map;
         this.mapHandler = new MapHandler(map);
+        dataHandler = new DataHandler(getApplicationContext(), mapHandler);
         map.setMyLocationEnabled(true);
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
@@ -57,7 +59,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
-
                 return false;
             }
         });
@@ -66,7 +67,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void initCamera(){
         Log.d("MAP", "Moving camera to my location");
         if(gpsTracker.canGetLocation) {
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gpsTracker.latitude, gpsTracker.longitude), 13));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gpsTracker.latitude, gpsTracker.longitude), 11));
             map.setOnMyLocationChangeListener(null);
         }
     }
@@ -75,10 +76,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dataHandler = new DataHandler(getApplicationContext());
         g = (Globals)getApplication();
         gpsTracker = new GPSTracker(getApplicationContext());
         requestPermissions();
+        gpsTracker.getLocation();
+        if (!gpsTracker.isGPSEnabled) {
+            Log.d("GPS", "GPS alert dialog");
+            showGPSDialog();
+        }
         //Init map
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapFragment);
         mapFragment.getMapAsync(this);
@@ -88,10 +93,18 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onStart() {
         super.onStart();
         gpsTracker.getLocation();
-        if (!gpsTracker.isGPSEnabled) {
-            Log.d("GPS", "GPS alert dialog");
-            showGPSDialog();
-        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        savedInstanceState.getDouble("latitude");
     }
 
     void showGPSDialog(){
@@ -149,13 +162,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void onClickGPS(View view) {
-        HttpRequest.httpGetRequest(getApplicationContext(), new HttpRequest.VolleyCallback() {
-            @Override
-            public void onSuccess(String result) {
-                //TextView textView = (TextView)findViewById(R.id.requestTextView);
-                mapHandler.addRestaurant(JSONParser.parse(result));
-            }
-        });
+
     }
 
     /**

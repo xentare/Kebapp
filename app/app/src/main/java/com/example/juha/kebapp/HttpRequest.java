@@ -30,6 +30,7 @@ public class HttpRequest{
      */
     public interface VolleyCallback{
         void onSuccess(String result);
+        void onError(VolleyError error);
     }
 
     /**
@@ -49,6 +50,7 @@ public class HttpRequest{
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("VolleyErrorResponse", ""+error.getMessage());
+                callback.onError(error);
             }
         }
         );

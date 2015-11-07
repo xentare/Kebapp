@@ -8,10 +8,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 /**
  * Created by Juha on 3.11.2015.
  */
-public class MapHandler implements GoogleMap.OnMarkerClickListener {
+public class MapHandler extends MainActivity implements GoogleMap.OnMarkerClickListener {
 
     GoogleMap map;
 
@@ -19,11 +21,19 @@ public class MapHandler implements GoogleMap.OnMarkerClickListener {
         this.map = map;
     }
 
-    public void addRestaurant(LatLng latLng, String name, int rating){
+    public void handleRestaurantRequest(List<Restaurant> restaurants){
+        if(restaurants != null){
+            for(Restaurant restaurant:restaurants){
+                addRestaurant(restaurant);
+            }
+        }
+    }
+
+    public void addRestaurant(Restaurant restaurant){
         MarkerOptions options = new MarkerOptions()
-                .position(latLng)
-                .title(name)
-                .snippet("Stars: "+Integer.toString(rating));
+                .position(new LatLng(restaurant.latitude,restaurant.longitude))
+                .title(restaurant.name)
+                .snippet("Stars: "+Integer.toString(restaurant.stars));
         map.addMarker(options);
         map.setOnMarkerClickListener(this);
     }

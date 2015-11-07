@@ -13,6 +13,9 @@ public class Restaurant {
     public Double latitude;
     public Double longitude;
 
+    public Restaurant(){
+
+    }
 
     public Restaurant(int id, String name, String address, Double latitude, Double longitude, int stars){
         this.id = id;
