@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -25,7 +26,9 @@ import com.google.android.gms.maps.GoogleMap;
 
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -39,7 +42,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     /**
     * Configures map and implements an intent call listener to GPS button
-    * TODO: 0.1 Prompt "Go to GPS settings or not" dialog
     * TODO: 1.0 Google maps like GPS allowing dialog
      */
     @Override
@@ -47,6 +49,19 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         this.map = map;
         this.mapHandler = new MapHandler(map);
         dataHandler = new DataHandler(getApplicationContext(), mapHandler);
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                setOverlayFragmentVisible(false);
+            }
+        });
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                enableOverlayFragment();
+                return false;
+            }
+        });
         map.setMyLocationEnabled(true);
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
@@ -54,8 +69,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 if(gpsTracker.isGPSEnabled){
                     initCamera();
                 }
-        }
-    });
+            }
+        });
         map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
@@ -144,21 +159,30 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     /**
-    * Fragment open/close DEMO
+    * Toggle Open/Close overlay fragment. If hide is set to true, will always hide.
      */
-    public void onclickOpenFragment(View view){
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.OverlayFragment);
-        if(fragment.isVisible()) {
+    public void setOverlayFragmentVisible(boolean visible){
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.overlayFragmentFrame);
+        if(!visible && fragment != null) {
             FragmentManager fm = getFragmentManager();
             fm.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                     .hide(fragment).commit();
-        } else {
+        } /*else {
             FragmentManager fm = getFragmentManager();
             fm.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                     .show(fragment).commit();
-        }
+        }*/
     }
 
+    public void enableOverlayFragment(){
+        //setOverlayFragmentVisible(true);
+        Fragment fragment = new OverlayFragment();
+        Bundle args = new Bundle();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.overlayFragmentFrame,fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
 
     public void onClickGPS(View view) {

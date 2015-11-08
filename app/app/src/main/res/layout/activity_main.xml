@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:id="@+id/mainFrameLayout">
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -11,15 +12,23 @@
             tools:context=".MapsActivity"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             />
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="bottom|center"
+    android:layout_width="fill_parent"
+    android:layout_height="250dp"
+    android:id="@+id/overlayFragmentFrame">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+   <!-- <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_gravity="bottom|center"
         android:layout_width="fill_parent"
         android:layout_height="250dp"
         android:id="@+id/OverlayFragment"
-        android:name="com.example.juha.kebapp.OverlayFragment"
-        />
+        android:name="com.example.juha.kebapp.OverlayFragment"/>!-->
+
+</FrameLayout>
     <SearchView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

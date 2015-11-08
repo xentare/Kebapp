@@ -10,6 +10,9 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Juha on 5.11.2015.
@@ -20,13 +23,20 @@ public class OverlayFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getFragmentManager().beginTransaction().hide(this).commit();
+        //this.getFragmentManager().beginTransaction().hide(this).commit();
     }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.overlay_fragment, container, false);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        TextView name = (TextView)getActivity().findViewById(R.id.name);
     }
 
     /**
