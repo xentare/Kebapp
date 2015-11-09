@@ -37,14 +37,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     HttpRequest httpRequest;
     GoogleMap map;
     MapHandler mapHandler;
-    DataHandlerdataHandler;
+    DataHandler dataHandler;
 
     /**
     * Configures map and implements an intent call listener to GPS button
     * TODO: 1.0 Google maps like GPS allowing dialog
      */
     @Override
-    public void onMapReady(GoogleMap map) asdasdasd
+    public void onMapReady(GoogleMap map){
         this.map = map;
         this.mapHandler = new MapHandler(map);
         dataHandler = new DataHandler(getApplicationContext(), mapHandler);
