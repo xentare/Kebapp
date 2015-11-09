@@ -37,15 +37,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     HttpRequest httpRequest;
     GoogleMap map;
     MapHandler mapHandler;
-    DataHandler dataHandler;
-
+    DataHandlerdataHandler;
 
     /**
     * Configures map and implements an intent call listener to GPS button
     * TODO: 1.0 Google maps like GPS allowing dialog
      */
     @Override
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady(GoogleMap map) asdasdasd
         this.map = map;
         this.mapHandler = new MapHandler(map);
         dataHandler = new DataHandler(getApplicationContext(), mapHandler);
@@ -78,6 +77,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
+
 
     public void initCamera(){
         Log.d("MAP", "Moving camera to my location");
