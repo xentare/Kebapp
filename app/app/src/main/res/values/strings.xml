@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="tab1_name">Near me</string>
+    <string name="tab2_name">Search</string>
+    <string name="tab3_name">Map</string>
 </resources>

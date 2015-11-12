@@ -2,14 +2,18 @@ package com.example.juha.kebapp;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Point;
+import android.media.Rating;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -19,24 +23,28 @@ import org.w3c.dom.Text;
  */
 public class OverlayFragment extends Fragment {
 
+    DataHandler dataHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        dataHandler = new DataHandler(getActivity());
         super.onCreate(savedInstanceState);
-        //this.getFragmentManager().beginTransaction().hide(this).commit();
     }
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.overlay_fragment, container, false);
-    }
+        View view = inflater.inflate(R.layout.overlay_fragment, container, false);
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        TextView name = (TextView)getActivity().findViewById(R.id.name);
+        if(getArguments().containsKey("restaurant")){
+            Restaurant restaurant = getArguments().getParcelable("restaurant");
+            TextView textView = (TextView)view.findViewById(R.id.name);
+            textView.setText(restaurant.name);
+            RatingBar ratingBar = (RatingBar)view.findViewById(R.id.ratingBar);
+            ratingBar.setRating(restaurant.stars);
+        }
+        return view;
     }
 
     /**

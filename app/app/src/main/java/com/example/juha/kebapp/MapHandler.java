@@ -1,6 +1,7 @@
 package com.example.juha.kebapp;
 
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.support.annotation.MainThread;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,33 +21,76 @@ import java.util.List;
  */
 public class MapHandler{
 
-    GoogleMap map;
 
-    public MapHandler(GoogleMap map){
-        this.map = map;
+    private HashMap<String, Restaurant> restaurantMarkerMap;
+    private GoogleMap map;
+
+    public HashMap<String, Restaurant> getRestaurantMarkerMap() {
+        return restaurantMarkerMap;
     }
 
-    public interface MarkerClickCallback{
+    public MapHandler(GoogleMap map) {
+        this.map = map;
+        restaurantMarkerMap = new HashMap<>();
+
+        initialize();
+
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+            }
+        });
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // createOverlayFragment(marker);
+                return false;
+            }
+        });
+        map.setMyLocationEnabled(true);
+        map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+
+            }
+        });
+        map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                return false;
+            }
+        });
+
+    }
+
+    public void initialize(){
+
+    }
+
+    public interface MarkerClickCallback {
         void onMarkerClick(Marker marker);
     }
 
-    public void handleRestaurantRequest(List<Restaurant> restaurants){
-        if(restaurants != null){
-            for(Restaurant restaurant:restaurants){
-                addRestaurant(restaurant);
+    public void handleRestaurantRequest(List<Restaurant> restaurants) {
+        if (restaurants != null) {
+            for (Restaurant restaurant : restaurants) {
+                addRestaurantMarker(restaurant);
             }
         }
     }
 
-    public void addRestaurant(Restaurant restaurant){
+    public void addRestaurantMarker(Restaurant restaurant) {
 
-        MarkerIcon icon = new MarkerIcon(restaurant.name,restaurant.stars);
+        MarkerIcon icon = new MarkerIcon(restaurant.name, restaurant.stars);
 
         MarkerOptions options = new MarkerOptions()
-                .position(new LatLng(restaurant.latitude,restaurant.longitude))
+                .position(new LatLng(restaurant.latitude, restaurant.longitude))
                 .title(restaurant.name)
-                .snippet("Stars: "+Integer.toString(restaurant.stars));
+                .snippet("Stars: " + Integer.toString(restaurant.stars));
         Marker marker = map.addMarker(options);
+
+        restaurantMarkerMap.put(marker.getId(), restaurant);
     }
 
 }

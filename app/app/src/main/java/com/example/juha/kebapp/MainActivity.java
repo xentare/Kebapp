@@ -7,86 +7,29 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.PersistableBundle;
-import android.provider.ContactsContract;
 import android.provider.Settings;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
+import com.example.juha.kebapp.Fragments.GPSDialogFragment;
 import com.google.android.gms.maps.model.Marker;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity{
 
     Globals g;
     GPSTracker gpsTracker;
-    HttpRequest httpRequest;
-    GoogleMap map;
     MapHandler mapHandler;
-    DataHandler dataHandler;
-
-    /**
-    * Configures map and implements an intent call listener to GPS button
-    * TODO: 1.0 Google maps like GPS allowing dialog
-     */
-    @Override
-    public void onMapReady(GoogleMap map){
-        this.map = map;
-        this.mapHandler = new MapHandler(map);
-        dataHandler = new DataHandler(getApplicationContext(), mapHandler);
-        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                setOverlayFragmentVisible(false);
-            }
-        });
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                enableOverlayFragment();
-                return false;
-            }
-        });
-        map.setMyLocationEnabled(true);
-        map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                if(gpsTracker.isGPSEnabled){
-                    initCamera();
-                }
-            }
-        });
-        map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-            @Override
-            public boolean onMyLocationButtonClick() {
-                return false;
-            }
-        });
-    }
-
-
-
-    public void initCamera(){
-        Log.d("MAP", "Moving camera to my location");
-        if(gpsTracker.canGetLocation) {
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gpsTracker.latitude, gpsTracker.longitude), 11));
-            map.setOnMyLocationChangeListener(null);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +39,42 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         gpsTracker = new GPSTracker(getApplicationContext());
         requestPermissions();
         gpsTracker.getLocation();
+
         if (!gpsTracker.isGPSEnabled) {
             Log.d("GPS", "GPS alert dialog");
             showGPSDialog();
         }
-        //Init map
-        SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapFragment);
-        mapFragment.getMapAsync(this);
+        //Setup Tabs and View Pager for fragments
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab1_name));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab2_name));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab3_name));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final PagerAdapter adapter = new PagerAdapter
+                (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
@@ -175,10 +147,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }*/
     }
 
-    public void enableOverlayFragment(){
+    public void createOverlayFragment(Marker marker){
         //setOverlayFragmentVisible(true);
         Fragment fragment = new OverlayFragment();
         Bundle args = new Bundle();
+        if(mapHandler.getRestaurantMarkerMap().containsKey(marker.getId())){
+            args.putParcelable("restaurant", mapHandler.getRestaurantMarkerMap().get(marker.getId()));
+        }
+        fragment.setArguments(args);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.overlayFragmentFrame,fragment);
         transaction.addToBackStack(null);
@@ -225,6 +201,4 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("GPS", "Permissions already granted");
         }
     }
-
-
 }
