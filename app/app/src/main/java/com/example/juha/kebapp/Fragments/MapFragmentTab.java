@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.juha.kebapp.MainActivity;
 import com.example.juha.kebapp.MapHandler;
 import com.example.juha.kebapp.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,7 +47,7 @@ public class MapFragmentTab extends Fragment{
     public void onResume() {
         super.onResume();
         if(mapHandler == null){
-            mapHandler = new MapHandler(fragment.getMap());
+            mapHandler = new MapHandler(fragment.getMap(),getActivity());
         }
     }
 }

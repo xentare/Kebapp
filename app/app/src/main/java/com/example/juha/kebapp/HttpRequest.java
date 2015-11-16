@@ -49,7 +49,7 @@ public class HttpRequest{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("VolleyErrorResponse", ""+error.getMessage());
+                Log.d("VolleyErrorResponse", ""+error.toString());
                 callback.onError(error);
             }
         }

@@ -1,9 +1,12 @@
 package com.example.juha.kebapp;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.location.Location;
+import android.provider.ContactsContract;
 import android.support.annotation.MainThread;
 
+import com.android.volley.VolleyError;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.internal.IGoogleMapDelegate;
@@ -24,13 +27,15 @@ public class MapHandler{
 
     private HashMap<String, Restaurant> restaurantMarkerMap;
     private GoogleMap map;
+    private MainActivity activity;
 
     public HashMap<String, Restaurant> getRestaurantMarkerMap() {
         return restaurantMarkerMap;
     }
 
-    public MapHandler(GoogleMap map) {
+    public MapHandler(GoogleMap map, Activity activity) {
         this.map = map;
+        this.activity = (MainActivity)activity;
         restaurantMarkerMap = new HashMap<>();
 
         initialize();
@@ -64,20 +69,27 @@ public class MapHandler{
 
     }
 
+    /*
+    * Load and place markers
+     */
     public void initialize(){
+        activity.getDataHandler().requestRestaurants(new DataHandler.RequestCallback() {
+            @Override
+            public void onSuccess(List<Restaurant> restaurants) {
+                for (Restaurant restaurant:restaurants) {
+                    addRestaurantMarker(restaurant);
+                }
+            }
 
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
     }
 
     public interface MarkerClickCallback {
         void onMarkerClick(Marker marker);
-    }
-
-    public void handleRestaurantRequest(List<Restaurant> restaurants) {
-        if (restaurants != null) {
-            for (Restaurant restaurant : restaurants) {
-                addRestaurantMarker(restaurant);
-            }
-        }
     }
 
     public void addRestaurantMarker(Restaurant restaurant) {

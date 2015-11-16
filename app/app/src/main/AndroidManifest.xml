@@ -22,7 +22,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:label=""
+            android:label="KebApp"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

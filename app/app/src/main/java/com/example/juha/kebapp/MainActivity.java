@@ -30,11 +30,13 @@ public class MainActivity extends AppCompatActivity{
     Globals g;
     GPSTracker gpsTracker;
     MapHandler mapHandler;
+    private DataHandler dataHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.dataHandler = new DataHandler(this);
         g = (Globals)getApplication();
         gpsTracker = new GPSTracker(getApplicationContext());
         requestPermissions();
@@ -201,4 +203,9 @@ public class MainActivity extends AppCompatActivity{
             Log.d("GPS", "Permissions already granted");
         }
     }
+
+    public DataHandler getDataHandler(){
+        return this.dataHandler;
+    }
+
 }
