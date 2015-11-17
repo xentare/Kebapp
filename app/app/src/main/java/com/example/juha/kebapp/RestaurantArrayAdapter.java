@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Juha on 12.11.2015.
  */
-public class RestaurantArrayAdapter extends ArrayAdapter<Restaurant> {
+public class RestaurantArrayAdapter extends ArrayAdapter<Restaurant>{
 
 
    public RestaurantArrayAdapter(Context context, ArrayList<Restaurant> restaurants){
@@ -34,7 +35,7 @@ public class RestaurantArrayAdapter extends ArrayAdapter<Restaurant> {
 
         ratingBar.setRating(restaurant.stars);
         textView.setText(restaurant.name);
-
         return convertView;
     }
+
 }

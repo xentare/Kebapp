@@ -4,6 +4,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class MapFragmentTab extends Fragment{
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        Log.d("Fragment","Creating new MapActivity");
         super.onActivityCreated(savedInstanceState);
         FragmentManager fm = getChildFragmentManager();
         fragment = (SupportMapFragment) fm.findFragmentById(R.id.mapFragment);
@@ -50,4 +52,6 @@ public class MapFragmentTab extends Fragment{
             mapHandler = new MapHandler(fragment.getMap(),getActivity());
         }
     }
+
+
 }

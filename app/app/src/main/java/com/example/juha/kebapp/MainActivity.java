@@ -85,21 +85,14 @@ public class MainActivity extends AppCompatActivity{
         gpsTracker.getLocation();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        savedInstanceState.getDouble("latitude");
-    }
-
     void showGPSDialog(){
         DialogFragment dialogFragment = new GPSDialogFragment();
         dialogFragment.show(getFragmentManager(), "dialog");
+    }
+
+    void showRestaurantActivity(){
+        Intent restaurantIntent = new Intent(MainActivity.this, RestaurantActivity.class);
+        startActivity(restaurantIntent);
     }
 
     public void onGPSDialogPositiveClick(){

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.provider.ContactsContract;
 import android.support.annotation.MainThread;
+import android.util.Log;
 
 import com.android.volley.VolleyError;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by Juha on 3.11.2015.
  */
-public class MapHandler{
+public class MapHandler {
 
 
     private HashMap<String, Restaurant> restaurantMarkerMap;
@@ -33,9 +34,9 @@ public class MapHandler{
         return restaurantMarkerMap;
     }
 
-    public MapHandler(GoogleMap map, Activity activity) {
+    public MapHandler(GoogleMap map, final Activity activity) {
         this.map = map;
-        this.activity = (MainActivity)activity;
+        this.activity = (MainActivity) activity;
         restaurantMarkerMap = new HashMap<>();
 
         initialize();
@@ -46,18 +47,16 @@ public class MapHandler{
 
             }
         });
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
-            public boolean onMarkerClick(Marker marker) {
-                // createOverlayFragment(marker);
-                return false;
+            public void onInfoWindowClick(Marker marker) {
+                ((MainActivity) activity).showRestaurantActivity();
             }
         });
         map.setMyLocationEnabled(true);
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-
             }
         });
         map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
@@ -72,11 +71,11 @@ public class MapHandler{
     /*
     * Load and place markers
      */
-    public void initialize(){
+    public void initialize() {
         activity.getDataHandler().requestRestaurants(new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(List<Restaurant> restaurants) {
-                for (Restaurant restaurant:restaurants) {
+                for (Restaurant restaurant : restaurants) {
                     addRestaurantMarker(restaurant);
                 }
             }

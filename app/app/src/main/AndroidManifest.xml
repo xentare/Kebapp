@@ -31,9 +31,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MapFragment"
-            android:label=""
-            android:theme="@style/AppTheme">
+            android:name=".RestaurantActivity"
+            android:label="Restaurant">
         </activity>
     </application>
 
