@@ -29,15 +29,55 @@ $endpoint = array_shift($args);
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    if($endpoint == 'restaurant'){
+    switch($endpoint){
+        case 'restaurant':
         echo restaurantQuery($args);
+            break;
+        case 'comment':
+            echo commentGetQuery($args);
+            break;
     }
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    if($endpoint == 'restaurant'){
-       restaurantPostQuery();
+    switch($endpoint){
+        case 'restaurant':
+            echo restaurantPostQuery();
+            break;
+        case 'comment':
+            echo commentPostQuery();
+            break;
     }
+}
+
+function commentGetQuery($args){
+    $MY_DB = new DATABASE_CONNECT();
+    $mysqli = $MY_DB->connect();
+    //$mysqli->real_escape_string($args[0]);
+
+    if(!isset($args[0])){
+        $query = "SELECT * FROM comments";
+    } else {
+        $query = "SELECT * FROM comments WHERE restaurant_id = ('$args[0]')";
+    }
+    return fetch($mysqli->query($query));
+
+}
+
+function commentPostQuery(){
+    $MY_DB = new DATABASE_CONNECT();
+    $mysqli = $MY_DB->connect();
+    $mysqli->real_escape_string($_POST['text']);
+
+    if(isset($_POST['restaurant_id'])){
+        $query = "INSERT INTO comments (restaurant_id, text) VALUES (?,?)";
+        $mysqli->query($query);
+
+        $statement = $mysqli->prepare($query);
+        $statement->bind_param('is',$_POST['restaurant_id'],$_POST['text']);
+        return fetch($statement->execute());
+    }
+
 }
 
 function restaurantPostQuery(){
@@ -51,17 +91,10 @@ function restaurantPostQuery(){
 
     if(isset($_POST['name'])){
         $query = "INSERT INTO restaurants (name, latitude, longitude, address) VALUES (?,?,?,?)";
-        $mysqli->query($query);
 
         $statement = $mysqli->prepare($query);
         $statement->bind_param('sdds',$_POST['name'],$_POST['latitude'],$_POST['longitude'],$_POST['address']);
-        $statement->execute();
-        if($mysqli->error){
-            echo $mysqli->error;
-        } else {
-            echo "POST successful!";
-        }
-        $mysqli->close();
+        return fetch($statement->execute());
     }
 }
 

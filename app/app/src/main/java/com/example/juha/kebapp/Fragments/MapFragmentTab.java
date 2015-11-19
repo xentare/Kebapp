@@ -49,6 +49,7 @@ public class MapFragmentTab extends Fragment{
     public void onResume() {
         super.onResume();
         if(mapHandler == null){
+            Log.d("MAP","Creating new maphandler!");
             mapHandler = new MapHandler(fragment.getMap(),getActivity());
         }
     }

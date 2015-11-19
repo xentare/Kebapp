@@ -34,6 +34,7 @@ public class MapHandler {
         return restaurantMarkerMap;
     }
 
+
     public MapHandler(GoogleMap map, final Activity activity) {
         this.map = map;
         this.activity = (MainActivity) activity;
@@ -50,7 +51,7 @@ public class MapHandler {
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                ((MainActivity) activity).showRestaurantActivity();
+                ((MainActivity) activity).showRestaurantActivity(restaurantMarkerMap.get(marker.getId()));
             }
         });
         map.setMyLocationEnabled(true);
@@ -72,10 +73,12 @@ public class MapHandler {
     * Load and place markers
      */
     public void initialize() {
+        Log.d("MAP","Initializing maphandler!");
         activity.getDataHandler().requestRestaurants(new DataHandler.RequestCallback() {
             @Override
-            public void onSuccess(List<Restaurant> restaurants) {
-                for (Restaurant restaurant : restaurants) {
+            public void onSuccess(String restaurants) {
+                List<Restaurant> list = JSONParser.parseRestaurants(restaurants);
+                for (Restaurant restaurant : list) {
                     addRestaurantMarker(restaurant);
                 }
             }

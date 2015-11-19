@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.android.volley.VolleyError;
 import com.example.juha.kebapp.DataHandler;
+import com.example.juha.kebapp.JSONParser;
 import com.example.juha.kebapp.MainActivity;
 import com.example.juha.kebapp.R;
 import com.example.juha.kebapp.Restaurant;
@@ -28,13 +29,14 @@ import java.util.List;
 public class ListFragmentTab extends Fragment implements AdapterView.OnItemClickListener{
 
     RestaurantArrayAdapter adapter;
+    ArrayList<Restaurant> restaurants;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         ((MainActivity)getActivity()).getDataHandler().requestRestaurants(new DataHandler.RequestCallback() {
             @Override
-            public void onSuccess(List<Restaurant> restaurants) {
-                adapter.addAll(restaurants);
+            public void onSuccess(String restaurants) {
+                adapter.addAll(JSONParser.parseRestaurants(restaurants));
             }
             @Override
             public void onError(VolleyError error) {
@@ -53,7 +55,7 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_fragment, container, false);
-        ArrayList<Restaurant> restaurants = new ArrayList<>();
+        restaurants = new ArrayList<>();
         adapter = new RestaurantArrayAdapter(getContext(),restaurants);
         ListView listView = (ListView)view.findViewById(R.id.listView);
         listView.setOnItemClickListener(this);
@@ -63,8 +65,6 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("Item","Item clicked");
-        Intent restaurantIntent = new Intent(getActivity(), RestaurantActivity.class);
-        getActivity().startActivity(restaurantIntent);
+        ((MainActivity)getActivity()).showRestaurantActivity(restaurants.get(position));
     }
 }

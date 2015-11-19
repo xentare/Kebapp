@@ -26,18 +26,10 @@ import java.util.Map;
 public class HttpRequest{
 
     /**
-     * Callback interface for HTTP responses
-     */
-    public interface VolleyCallback{
-        void onSuccess(String result);
-        void onError(VolleyError error);
-    }
-
-    /**
     * Uses Volley to send HTTP request. Implements callback interface to handle responses
      */
     public static void httpGetRequest(Context context, String url, final VolleyCallback callback){
-
+            Log.d("VOLLEY",url);
             RequestQueue queue = Volley.newRequestQueue(context);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -57,37 +49,35 @@ public class HttpRequest{
             queue.add(stringRequest);
     }
 
-    public void httpPostRequest(Context context){
-        // Instantiate the RequestQueue.
+    public static void httpPostRequest(Context context, String url, final Map<String,String> params, final VolleyCallback callback){
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url ="http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant";
-
-        // Request a string response from the provided URL.
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d("VolleyResponse",response);
+                        Log.d("VolleyResponse", response);
+                        callback.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("VolleyErrorResponse",error.getMessage());
+                Log.d("VolleyErrorResponse", ""+error.toString());
+                callback.onError(error);
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String>  params = new HashMap<>();
-                // the POST parameters:
-                params.put("name", "Tesoman Pizza Kebab");
-                params.put("latitude", "12.0000");
-                params.put("longitude", "13.000");
-                params.put("address","Tesomankatu");
                 return params;
             }
         };
-        // Add the request to the RequestQueue.
         queue.add(postRequest);
+    }
+
+    /**
+     * Callback interface for HTTP responses
+     */
+    public interface VolleyCallback{
+        void onSuccess(String result);
+        void onError(VolleyError error);
     }
 }

@@ -85,13 +85,14 @@ public class MainActivity extends AppCompatActivity{
         gpsTracker.getLocation();
     }
 
-    void showGPSDialog(){
+    public void showGPSDialog(){
         DialogFragment dialogFragment = new GPSDialogFragment();
         dialogFragment.show(getFragmentManager(), "dialog");
     }
 
-    void showRestaurantActivity(){
+    public void showRestaurantActivity(Restaurant restaurant){
         Intent restaurantIntent = new Intent(MainActivity.this, RestaurantActivity.class);
+        restaurantIntent.putExtra("restaurant",restaurant);
         startActivity(restaurantIntent);
     }
 

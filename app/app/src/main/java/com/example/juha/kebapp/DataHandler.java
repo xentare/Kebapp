@@ -6,19 +6,22 @@ import android.content.Context;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Juha on 6.11.2015.
  */
-public class DataHandler implements HttpRequest.VolleyCallback {
+public class DataHandler {
 
     Context context;
     Activity activity;
-    String url = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant";
+    String restaurants = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant";
+    String comments = "http://student.labranet.jamk.fi/~H4113/kebapi/api/comment/";
 
     public interface RequestCallback{
-        void onSuccess(List<Restaurant> restaurants);
+        void onSuccess(String result);
         void onError(VolleyError error);
     }
 
@@ -27,15 +30,14 @@ public class DataHandler implements HttpRequest.VolleyCallback {
         this.context = activity.getApplicationContext();
     }
 
-    public void requestRestaurant(String id){
-        HttpRequest.httpGetRequest(context,url+"/"+id,this);
-    }
-
-    public void requestRestaurants(final RequestCallback requestCallback){
-        HttpRequest.httpGetRequest(context, url, new HttpRequest.VolleyCallback() {
+    /*
+    *TODO: Make one proper request function.
+     */
+    public void requestComments(String restaurant_id,final RequestCallback requestCallback){
+        HttpRequest.httpGetRequest(context, comments+restaurant_id, new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
-                requestCallback.onSuccess(JSONParser.parseRestaurants(result));
+                requestCallback.onSuccess(result);
             }
 
             @Override
@@ -45,14 +47,32 @@ public class DataHandler implements HttpRequest.VolleyCallback {
         });
     }
 
-    @Override
-    public void onSuccess(String result) {
-        List<Restaurant> restaurants = JSONParser.parseRestaurants(result);
+    public void requestRestaurants(final RequestCallback requestCallback){
+        HttpRequest.httpGetRequest(context, restaurants, new HttpRequest.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                requestCallback.onSuccess(result);
+            }
 
+            @Override
+            public void onError(VolleyError error) {
+                requestCallback.onError(error);
+            }
+        });
     }
 
-    @Override
-    public void onError(VolleyError error) {
-        HttpRequest.httpGetRequest(context, url, this);
+    public void postComment(final Map<String,String> params, final RequestCallback requestCallback){
+        HttpRequest.httpPostRequest(context, comments, params, new HttpRequest.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                requestCallback.onSuccess(result);
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                requestCallback.onError(error);
+            }
+        });
     }
+
 }

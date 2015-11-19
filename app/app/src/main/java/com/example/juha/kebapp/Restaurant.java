@@ -10,7 +10,7 @@ import android.os.Parcelable;
  */
 public class Restaurant implements Parcelable {
 
-    public int id;
+    public String id;
     public int stars;
     public String name;
     public String address;
@@ -21,7 +21,7 @@ public class Restaurant implements Parcelable {
 
     }
 
-    public Restaurant(int id, String name, String address, Double latitude, Double longitude, int stars){
+    public Restaurant(String id, String name, String address, Double latitude, Double longitude, int stars){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -32,7 +32,7 @@ public class Restaurant implements Parcelable {
 
 
     protected Restaurant(Parcel in) {
-        id = in.readInt();
+        id = in.readString();
         stars = in.readInt();
         name = in.readString();
         address = in.readString();
@@ -47,7 +47,7 @@ public class Restaurant implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeInt(stars);
         dest.writeString(name);
         dest.writeString(address);
