@@ -43,15 +43,7 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
             @Override
             public void onSuccess(String restaurants) {
                 getView().findViewById(R.id.spinner).setVisibility(View.GONE);
-                float[] results = new float[3];
-                Location location = ((MainActivity) getActivity()).getGpsTracker().getLocation();
-                List<Restaurant> list = JSONParser.parseRestaurants(restaurants);
-                 for(Restaurant r:list){
-                     Location.distanceBetween(r.latitude, r.longitude, location.getLatitude(), location.getLongitude(), results);
-                     r.distance = results[0]/1000;
-                 }
-                Collections.sort(list, new Restaurant.DistanceComparator());
-                adapter.addAll(list);
+                setRestaurants(restaurants);
             }
             @Override
             public void onError(VolleyError error) {
@@ -82,4 +74,19 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ((MainActivity)getActivity()).showRestaurantActivity(restaurants.get(position));
     }
+
+    public void setRestaurants(String restaurants){
+        float[] results = new float[3];
+        Location location = ((MainActivity) getActivity()).getGpsTracker().getLocation();
+        List<Restaurant> list = JSONParser.parseRestaurants(restaurants);
+        if(location != null) {
+            for (Restaurant r : list) {
+                Location.distanceBetween(r.latitude, r.longitude, location.getLatitude(), location.getLongitude(), results);
+                r.distance = results[0] / 1000;
+            }
+            Collections.sort(list, new Restaurant.DistanceComparator());
+        }
+        adapter.addAll(list);
+    }
+
 }

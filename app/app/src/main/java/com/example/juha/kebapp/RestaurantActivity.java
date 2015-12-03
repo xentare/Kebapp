@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +41,7 @@ public class RestaurantActivity extends Activity {
         textView.setText(restaurant.name);
         RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarRestaurantActivity);
         ratingBar.setRating(restaurant.stars);
+        TextView timestamp = (TextView)findViewById(R.id.timeStamp);
 
 
         getData();
