@@ -60,6 +60,19 @@ public class DataHandler {
             }
         });
     }
+    public void requestRestaurants(String query, final RequestCallback requestCallback){
+        HttpRequest.httpGetRequest(context, restaurants+"/"+query, new HttpRequest.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                requestCallback.onSuccess(result);
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                requestCallback.onError(error);
+            }
+        });
+    }
 
     public void postComment(final Map<String,String> params, final RequestCallback requestCallback){
         HttpRequest.httpPostRequest(context, comments, params, new HttpRequest.VolleyCallback() {

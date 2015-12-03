@@ -4,25 +4,27 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Restaurant name"
         android:id="@+id/restaurantName"
-        android:layout_below="@+id/ratingBar2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBarRestaurantActivity"
+        android:layout_below="@+id/restaurantName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
@@ -44,12 +46,21 @@
         android:onClick="postCommentButtonClicked"/>
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/commentsListView"
-        android:layout_below="@+id/restaurantName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/commentBox" />
+        android:layout_above="@+id/commentBox"
+        android:layout_below="@+id/ratingBarRestaurantActivity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate"
+        android:id="@+id/button"
+        android:layout_below="@+id/restaurantName"
+        android:layout_alignRight="@+id/sendButton"
+        android:layout_alignEnd="@+id/sendButton" />
 
 </RelativeLayout>

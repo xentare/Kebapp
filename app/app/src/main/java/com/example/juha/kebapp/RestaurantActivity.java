@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -35,6 +36,9 @@ public class RestaurantActivity extends Activity {
         restaurant = extras.getParcelable("restaurant");
         TextView textView = (TextView)findViewById(R.id.restaurantName);
         textView.setText(restaurant.name);
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarRestaurantActivity);
+        ratingBar.setRating(restaurant.stars);
+
 
         getData();
 

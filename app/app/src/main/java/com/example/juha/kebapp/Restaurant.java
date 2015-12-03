@@ -1,7 +1,11 @@
 package com.example.juha.kebapp;
 
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.Comparator;
 
 /**
  * Created by Juha on 2.11.2015.
@@ -16,9 +20,17 @@ public class Restaurant implements Parcelable {
     public String address;
     public Double latitude;
     public Double longitude;
+    public Float distance;
 
     public Restaurant(){
 
+    }
+
+    public static class DistanceComparator implements Comparator<Restaurant>{
+        @Override
+        public int compare(Restaurant lhs, Restaurant rhs) {
+          return lhs.distance.compareTo(rhs.distance);
+        }
     }
 
     public Restaurant(String id, String name, String address, Double latitude, Double longitude, int stars){
@@ -30,7 +42,6 @@ public class Restaurant implements Parcelable {
         this.stars = stars;
     }
 
-
     protected Restaurant(Parcel in) {
         id = in.readString();
         stars = in.readInt();
@@ -38,6 +49,7 @@ public class Restaurant implements Parcelable {
         address = in.readString();
         latitude = in.readByte() == 0x00 ? null : in.readDouble();
         longitude = in.readByte() == 0x00 ? null : in.readDouble();
+        distance = in.readByte() == 0x00 ? null : in.readFloat();
     }
 
     @Override
@@ -62,6 +74,12 @@ public class Restaurant implements Parcelable {
         } else {
             dest.writeByte((byte) (0x01));
             dest.writeDouble(longitude);
+        }
+        if(distance == null){
+            dest.writeByte((byte) (0x00));
+        }else {
+            dest.writeByte((byte) (0x01));
+            dest.writeFloat(distance);
         }
     }
 

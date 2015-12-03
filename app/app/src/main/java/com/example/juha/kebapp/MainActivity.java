@@ -202,4 +202,6 @@ public class MainActivity extends AppCompatActivity{
         return this.dataHandler;
     }
 
+    public GPSTracker getGpsTracker() {return this.gpsTracker;};
+
 }

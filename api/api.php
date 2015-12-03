@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     switch($endpoint){
         case 'restaurant':
-        echo restaurantQuery($args);
+        echo restaurantGetQuery($args);
             break;
         case 'comment':
             echo commentGetQuery($args);
@@ -98,7 +98,7 @@ function restaurantPostQuery(){
     }
 }
 
-function restaurantQuery($args){
+function restaurantGetQuery($args){
 
     $MY_DB = new DATABASE_CONNECT();
     $mysqli = $MY_DB->connect();
@@ -107,7 +107,7 @@ function restaurantQuery($args){
     if(!isset($args[0])){
         $query = "SELECT * FROM restaurants";
     } else {
-        $query = "SELECT * FROM restaurants WHERE restaurant_id = ('$args[0]')";
+        $query = "SELECT * FROM restaurants WHERE name LIKE ('%$args[0]%')";
     }
     return fetch($mysqli->query($query));
 }

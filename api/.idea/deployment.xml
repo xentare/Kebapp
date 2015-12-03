@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Labranet server">
+  <component name="PublishConfigData" serverName="student.labranet.jamk.fi">
     <serverData>
-      <paths name="Labranet server">
+      <paths name="student.labranet.jamk.fi">
         <serverdata>
           <mappings>
             <mapping deploy="/public_html/kebapi" local="$PROJECT_DIR$" web="/" />

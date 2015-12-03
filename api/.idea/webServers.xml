@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="079a9d1e-4a12-4329-b020-6096ce9ab9d1" name="student.labranet.jamk.fi" url="http://student.labranet.jamk.fi/~H4113/">
+        <fileTransfer host="student.labranet.jamk.fi" port="22" rootFolder="/home/H4113" accessType="SFTP" password="dfe1df9ddfc6df92dfdadf9cdf9cdf9cdfcb" username="H4113">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

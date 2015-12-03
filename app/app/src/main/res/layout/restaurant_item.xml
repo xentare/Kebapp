@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
     android:descendantFocusability="blocksDescendants"
-    android:gravity="center_vertical" >
+    android:gravity="center_vertical"
+    android:weightSum="1">
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:id="@+id/ratingBar" />
-<LinearLayout
-    android:layout_width="match_parent"
+    <LinearLayout
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <TextView
@@ -28,7 +24,17 @@
         android:id="@+id/distance"
         android:text="Distance"
         android:textSize="20sp"
-        android:layout_gravity="right" />
-</LinearLayout>
+        android:layout_gravity="left" />
+
+    </LinearLayout>
+
+    <RatingBar
+        style="@style/RatingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/ratingBar"
+        android:clickable="false"
+        android:layout_marginBottom="20dp"/>
 
 </LinearLayout>

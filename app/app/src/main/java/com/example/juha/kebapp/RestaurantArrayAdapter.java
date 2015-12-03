@@ -2,6 +2,9 @@ package com.example.juha.kebapp;
 
 
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +34,10 @@ public class RestaurantArrayAdapter extends ArrayAdapter<Restaurant>{
 
         RatingBar ratingBar = (RatingBar)convertView.findViewById(R.id.ratingBar);
         TextView textView = (TextView)convertView.findViewById(R.id.restaurantName);
-
+        TextView distance = (TextView)convertView.findViewById(R.id.distance);
+        if(restaurant.distance != null) {
+            distance.setText(String.format("%.1f",restaurant.distance)+"km");
+        }
         ratingBar.setRating(restaurant.stars);
         textView.setText(restaurant.name);
         return convertView;

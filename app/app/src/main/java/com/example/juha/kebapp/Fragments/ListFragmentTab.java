@@ -1,6 +1,7 @@
 package com.example.juha.kebapp.Fragments;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.android.volley.VolleyError;
 import com.example.juha.kebapp.DataHandler;
@@ -21,6 +23,7 @@ import com.example.juha.kebapp.RestaurantActivity;
 import com.example.juha.kebapp.RestaurantArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,12 +34,24 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
     RestaurantArrayAdapter adapter;
     ArrayList<Restaurant> restaurants;
 
+    /*
+    * Requests all restaurants and puts them in the listview. Also sets distance in km based on current location and sorts the list.
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        ((MainActivity)getActivity()).getDataHandler().requestRestaurants(new DataHandler.RequestCallback() {
+        ((MainActivity) getActivity()).getDataHandler().requestRestaurants(new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String restaurants) {
-                adapter.addAll(JSONParser.parseRestaurants(restaurants));
+                getView().findViewById(R.id.spinner).setVisibility(View.GONE);
+                float[] results = new float[3];
+                Location location = ((MainActivity) getActivity()).getGpsTracker().getLocation();
+                List<Restaurant> list = JSONParser.parseRestaurants(restaurants);
+                 for(Restaurant r:list){
+                     Location.distanceBetween(r.latitude, r.longitude, location.getLatitude(), location.getLongitude(), results);
+                     r.distance = results[0]/1000;
+                 }
+                Collections.sort(list, new Restaurant.DistanceComparator());
+                adapter.addAll(list);
             }
             @Override
             public void onError(VolleyError error) {
