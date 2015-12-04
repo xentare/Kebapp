@@ -84,13 +84,12 @@ function restaurantPostQuery(){
 
     $MY_DB = new DATABASE_CONNECT();
     $mysqli = $MY_DB->connect();
+
     $mysqli->real_escape_string($_POST['name']);
-    //$mysqli->real_escape_string($_POST['latitude']);
-    //$mysqli->real_escape_string($_POST['longitude']);
     $mysqli->real_escape_string($_POST['address']);
 
     if(isset($_POST['name'])){
-        $query = "INSERT INTO restaurants (name, latitude, longitude, address) VALUES (?,?,?,?)";
+        $query = "INSERT INTO restaurants (name, latitude, longitude, address, rating) VALUES (?,?,?,?,0)";
 
         $statement = $mysqli->prepare($query);
         $statement->bind_param('sdds',$_POST['name'],$_POST['latitude'],$_POST['longitude'],$_POST['address']);
@@ -104,14 +103,17 @@ function restaurantGetQuery($args){
     $mysqli = $MY_DB->connect();
     //$mysqli->real_escape_string($args[0]);
 
+
     if(!isset($args[0])){
         $query = "SELECT * FROM restaurants";
-    } else {
-        $query = "SELECT * FROM restaurants WHERE name LIKE ('%$args[0]%')";
+    } else if($args[0] == "search" && isset($args[1])){
+        $query = "SELECT * FROM restaurants WHERE name LIKE ('%$args[1]%') OR address LIKE ('%$args[1]%')";
+    } else if($args[0] == "openings" && isset($args[1])){
+        $day = date('N', date('W'));
+        $query = "SELECT start_hour, end_hour  FROM opening_hours WHERE weekday = $day AND restaurant_id = $args[1]";
     }
     return fetch($mysqli->query($query));
 }
-
 
 
 function fetch($result){
@@ -127,4 +129,15 @@ function fetch($result){
 /*while (list($var,$value) = each ($_SERVER)) {
     echo $var." Val:".$value."<br />";
 }*/
+
+/*
+INSERT INTO `H4113`.`opening_hours` (`restaurant_id`, `weekday`, `start_hour`, `end_hour`) VALUES ('1', '1', '10:00:00', '22:00:00');
+INSERT INTO `H4113`.`opening_hours` (`restaurant_id`, `weekday`, `start_hour`, `end_hour`) VALUES ('1', '2', '10:00:00', '22:00:00');
+INSERT INTO `H4113`.`opening_hours` (`restaurant_id`, `weekday`, `start_hour`, `end_hour`) VALUES ('1', '3', '10:00:00', '22:00:00');
+INSERT INTO `H4113`.`opening_hours` (`restaurant_id`, `weekday`, `start_hour`, `end_hour`) VALUES ('1', '4', '10:00:00', '22:00:00');
+INSERT INTO `H4113`.`opening_hours` (`restaurant_id`, `weekday`, `start_hour`, `end_hour`) VALUES ('1', '5', '10:00:00', '22:00:00');
+INSERT INTO `H4113`.`opening_hours` (`restaurant_id`, `weekday`, `start_hour`, `end_hour`) VALUES ('1', '6', '11:00:00', '22:00:00');
+INSERT INTO `H4113`.`opening_hours` (`restaurant_id`, `weekday`, `start_hour`, `end_hour`) VALUES ('1', '7', '11:00:00', '22:00:00');
+*/
+
 ?>

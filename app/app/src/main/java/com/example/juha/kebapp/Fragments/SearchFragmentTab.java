@@ -1,5 +1,6 @@
 package com.example.juha.kebapp.Fragments;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 /**
  * Created by Juha on 12.11.2015.
  */
-public class SearchFragmentTab extends Fragment{
+public class SearchFragmentTab extends Fragment implements AdapterView.OnItemClickListener{
 
     RestaurantArrayAdapter adapter;
     ArrayList<Restaurant> restaurants;
@@ -49,11 +50,11 @@ public class SearchFragmentTab extends Fragment{
             public boolean onQueryTextSubmit(String query) {
                 spinner.setVisibility(View.VISIBLE);
                 adapter.clear();
-                ((MainActivity)getActivity()).getDataHandler().requestRestaurants(searchView.getQuery().toString(), new DataHandler.RequestCallback() {
+                ((MainActivity)getActivity()).getDataHandler().requestRestaurantsSearch(searchView.getQuery().toString(), new DataHandler.RequestCallback() {
                     @Override
                     public void onSuccess(String result) {
                         spinner.setVisibility(View.GONE);
-                        adapter.addAll(JSONParser.parseRestaurants(result));
+                        setRestaurants(result);
                     }
 
                     @Override
@@ -73,4 +74,15 @@ public class SearchFragmentTab extends Fragment{
         return view;
     }
 
+    public void setRestaurants(String restaurants){
+        Location location = ((MainActivity) getActivity()).getGpsTracker().getLocation();
+        if(location != null) {
+            adapter.addAll(Restaurant.setDistances(JSONParser.parseRestaurants(restaurants), location));
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ((MainActivity)getActivity()).showRestaurantActivity(restaurants.get(position));
+    }
 }

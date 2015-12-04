@@ -1,9 +1,15 @@
 package com.example.juha.kebapp;
 
+import android.util.Log;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Time;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +51,23 @@ public class JSONParser {
         return null;
     }
 
+    public static String parseOpenings(String data){
+
+        String openings;
+        try{
+            JSONArray array = new JSONArray(data);
+            JSONObject obj = array.getJSONObject(0);
+            openings = (obj.getString("start_hour"));
+            openings += "-";
+            openings += (obj.getString("end_hour"));
+            Log.d("asd",openings);
+            return openings;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static List<String> parseComments(String data){
         List<String> comments = new ArrayList<>();
 
@@ -56,6 +79,20 @@ public class JSONParser {
                 comments.add(obj.getString("text"));
             }
             return comments;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static LatLng parseLatLng(String data){
+        try{
+            JSONObject obj = new JSONObject(data);
+            JSONArray array = obj.getJSONArray("results");
+            JSONObject object = array.getJSONObject(0);
+            object = object.getJSONObject("geometry").getJSONObject("location");
+            LatLng latLng = new LatLng(object.getDouble("lat"),object.getDouble("lng"));
+            return latLng;
         } catch (JSONException e) {
             e.printStackTrace();
         }

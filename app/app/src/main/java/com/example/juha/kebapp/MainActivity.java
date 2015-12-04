@@ -96,6 +96,11 @@ public class MainActivity extends AppCompatActivity{
         startActivity(restaurantIntent);
     }
 
+    public void showAddRestaurantActivity(View view){
+        Intent intent = new Intent(MainActivity.this,AddRestaurantActivity.class);
+        startActivity(intent);
+    }
+
     public void onGPSDialogPositiveClick(){
         Intent gpsOptionsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         startActivity(gpsOptionsIntent);
@@ -120,11 +125,12 @@ public class MainActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_addRestaurant) {
+            //showAddRestaurantActivity();
+            //return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     /**

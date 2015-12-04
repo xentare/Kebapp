@@ -64,10 +64,14 @@ public class MapHandler {
     }
 
     /*
-    * Load and place markers
+    * Load and place markers and init camera position
      */
     public void initialize() {
         Log.d("MAP","Initializing maphandler!");
+        Location location = activity.getGpsTracker().getLocation();
+        if(location != null){
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),12));
+        }
         activity.getDataHandler().requestRestaurants(new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String restaurants) {

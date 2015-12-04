@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,7 +18,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,9 +32,9 @@ public class HttpRequest{
     * Uses Volley to send HTTP request. Implements callback interface to handle responses
      */
     public static void httpGetRequest(Context context, String url, final VolleyCallback callback){
-            Log.d("VOLLEY",url);
-            RequestQueue queue = Volley.newRequestQueue(context);
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        Log.d("VOLLEY", url);
+        final RequestQueue queue = Volley.newRequestQueue(context);
+        final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -41,12 +44,14 @@ public class HttpRequest{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("VolleyErrorResponse", ""+error.toString());
+                Log.d("VolleyErrorResponse", "" + error.toString());
                 callback.onError(error);
             }
         }
         );
-            queue.add(stringRequest);
+        //Sets when to retry the request
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(2000,2,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
     }
 
     public static void httpPostRequest(Context context, String url, final Map<String,String> params, final VolleyCallback callback){
@@ -70,6 +75,7 @@ public class HttpRequest{
                 return params;
             }
         };
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(2000,2,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(postRequest);
     }
 

@@ -5,7 +5,9 @@ import android.location.LocationManager;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Juha on 2.11.2015.
@@ -95,4 +97,15 @@ public class Restaurant implements Parcelable {
             return new Restaurant[size];
         }
     };
+
+    public static List<Restaurant> setDistances(List<Restaurant> restaurants, Location location){
+        float[] results = new float[3];
+        for (Restaurant r : restaurants) {
+            Location.distanceBetween(r.latitude, r.longitude, location.getLatitude(), location.getLongitude(), results);
+            r.distance = results[0] / 1000;
+        }
+        Collections.sort(restaurants, new Restaurant.DistanceComparator());
+        return restaurants;
+    }
+
 }

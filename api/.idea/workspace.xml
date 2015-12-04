@@ -2,28 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed4e3e91-286f-4112-9420-e0c02722ee85" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/app/src/main/res/drawable/rating_bar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/app/src/main/res/drawable/rating_bar_full_empty.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/app/src/main/res/drawable/rating_bar_full_filled.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../app/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/DataHandler.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/DataHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/HttpRequest.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/HttpRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/JSONParser.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/JSONParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/Fragments/ListFragmentTab.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/Fragments/ListFragmentTab.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/MainActivity.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/MapHandler.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/MapHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/Restaurant.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/Restaurant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/RestaurantActivity.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/RestaurantActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/RestaurantArrayAdapter.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/RestaurantArrayAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/Fragments/SearchFragmentTab.java" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/example/juha/kebapp/Fragments/SearchFragmentTab.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api.php" afterPath="$PROJECT_DIR$/api.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/app-app.iml" afterPath="$PROJECT_DIR$/../app/app/app-app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app.iml" afterPath="$PROJECT_DIR$/../app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/.idea/gradle.xml" afterPath="$PROJECT_DIR$/../app/.idea/gradle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/res/layout/list_fragment.xml" afterPath="$PROJECT_DIR$/../app/app/src/main/res/layout/list_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/.idea/misc.xml" afterPath="$PROJECT_DIR$/../app/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/res/menu/menu_main.xml" afterPath="$PROJECT_DIR$/../app/app/src/main/res/menu/menu_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/res/layout/restaurant_activity.xml" afterPath="$PROJECT_DIR$/../app/app/src/main/res/layout/restaurant_activity.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/res/layout/restaurant_item.xml" afterPath="$PROJECT_DIR$/../app/app/src/main/res/layout/restaurant_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/res/layout/search.xml" afterPath="$PROJECT_DIR$/../app/app/src/main/res/layout/search.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/../app/app/src/main/res/values/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="KebApp.iws" />
@@ -49,7 +43,7 @@
       <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.75">
+            <state vertical-scroll-proportion="0.0">
               <caret line="19" column="24" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="55" />
               <folding />
             </state>
@@ -59,7 +53,7 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75">
+            <state vertical-scroll-proportion="0.0">
               <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
               <folding />
             </state>
@@ -69,16 +63,18 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54307115">
-              <caret line="109" column="72" selection-start-line="109" selection-start-column="72" selection-end-line="109" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.57347673">
+              <caret line="91" column="103" selection-start-line="91" selection-start-column="103" selection-end-line="91" selection-end-column="103" />
               <folding>
                 <element signature="e#6#84#0#PHP" expanded="true" />
-                <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-                <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-                <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-                <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-                <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-                <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+                <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+                <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+                <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+                <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+                <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+                <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+                <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+                <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
               </folding>
             </state>
           </provider>
@@ -95,9 +91,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -128,8 +121,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="x" value="306" />
+    <option name="width" value="1614" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -173,6 +167,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -194,7 +189,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -202,7 +196,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FullScreen" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RunManager">
@@ -266,31 +260,31 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="306" y="0" width="1614" height="1040" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20334621" sideWeight="0.49589685" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270809" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22638889" sideWeight="0.49589685" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32673267" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5041032" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -320,10 +314,76 @@
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#84#0#PHP" expanded="true" />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#84#0#PHP" expanded="true" />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="19" column="24" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="24" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -333,12 +393,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -347,9 +409,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -359,12 +419,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -373,9 +435,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -385,12 +445,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -399,9 +461,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -411,12 +471,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -425,9 +487,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -437,12 +497,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -451,9 +513,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -463,12 +523,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -477,9 +539,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -489,12 +549,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -503,9 +565,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -515,12 +575,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>
@@ -529,9 +591,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -546,9 +606,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="28" selection-end-column="32" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -556,9 +614,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="28" selection-end-column="32" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -566,9 +622,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="28" selection-end-column="32" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -576,9 +630,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -586,9 +638,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -596,9 +646,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -625,7 +673,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75">
+        <state vertical-scroll-proportion="0.0">
           <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
           <folding />
         </state>
@@ -633,7 +681,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.75">
+        <state vertical-scroll-proportion="0.0">
           <caret line="19" column="24" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="55" />
           <folding />
         </state>
@@ -641,16 +689,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54307115">
-          <caret line="109" column="72" selection-start-line="109" selection-start-column="72" selection-end-line="109" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.57347673">
+          <caret line="91" column="103" selection-start-line="91" selection-start-column="103" selection-end-line="91" selection-end-column="103" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
-            <marker date="1448826940000" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
-            <marker date="1448826940000" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2290:2367" placeholder="INSERT INTO ..." />
-            <marker date="1448826940000" expanded="true" signature="2781:2806" placeholder="SELECT * FRO..restaurants..." />
-            <marker date="1448826940000" expanded="true" signature="2840:2896" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="1280:1302" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1336:1393" placeholder="SELECT * FRO..comments..." />
+            <marker date="1449225030624" expanded="true" signature="1655:1710" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2180:2267" placeholder="INSERT INTO ..." />
+            <marker date="1449225030624" expanded="true" signature="2682:2707" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2840" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2784:2871" placeholder="SELECT * FRO..restaurants..." />
+            <marker date="1449225030624" expanded="true" signature="2987:3076" placeholder="SELECT start..opening_hours..." />
           </folding>
         </state>
       </provider>

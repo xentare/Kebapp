@@ -2,26 +2,22 @@ package com.example.juha.kebapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.android.volley.VolleyError;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Juha on 16/11/15.
  */
-public class RestaurantActivity extends Activity {
+public class RestaurantActivity extends AppCompatActivity {
 
     CommentArrayAdapter adapter;
     ArrayList<String> comments;
@@ -41,7 +37,6 @@ public class RestaurantActivity extends Activity {
         textView.setText(restaurant.name);
         RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarRestaurantActivity);
         ratingBar.setRating(restaurant.stars);
-        TextView timestamp = (TextView)findViewById(R.id.timeStamp);
 
 
         getData();
@@ -54,6 +49,22 @@ public class RestaurantActivity extends Activity {
         if(dataHandler == null) {
             dataHandler = new DataHandler(this);
         }
+
+        dataHandler.requestRestaurantOpenings(restaurant.id, new DataHandler.RequestCallback() {
+            @Override
+            public void onSuccess(String result) {
+                TextView timestamp = (TextView)findViewById(R.id.openingHours);
+                if(result != "  []") {
+                    timestamp.append(JSONParser.parseOpenings(result));
+                }
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
+
         dataHandler.requestComments(restaurant.id,new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String result) {
