@@ -1,6 +1,8 @@
 package com.example.juha.kebapp;
 
 import android.app.Application;
+import android.provider.Settings;
+import android.provider.Settings.Secure;
 
 /**
  * Created by Juha on 3.11.2015.

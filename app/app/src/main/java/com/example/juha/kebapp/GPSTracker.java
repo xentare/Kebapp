@@ -11,6 +11,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.google.android.gms.maps.LocationSource;
+
 
 /**
  * Created by Juha on 3.11.2015.
@@ -23,11 +25,10 @@ public class GPSTracker extends Service implements LocationListener {
     private boolean isNetworkEnabled = false;
     private boolean canGetLocation = false;
     private Location location;
-    private double latitude;
-    private double longitude;
 
     private static final long MIN_DISTANCE_CHANGE_DOR_UPDATES = 10;
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60;
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 20;
+
 
     private LocationManager locationManager;
 
@@ -53,10 +54,6 @@ public class GPSTracker extends Service implements LocationListener {
                     Log.d("Network", "Network enabled");
                     if(locationManager != null){
                         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        if(location != null) {
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }
                     }
                 }
                 if (isGPSEnabled) {
@@ -64,10 +61,6 @@ public class GPSTracker extends Service implements LocationListener {
                     Log.d("GPS","GPS enabled");
                     if(locationManager != null){
                         location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if(location != null) {
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }
                     }
                 }
             }
@@ -91,8 +84,8 @@ public class GPSTracker extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        this.latitude = location.getLatitude();
-        this.longitude = location.getLongitude();
+        Log.d("LOCATION",Double.toString(location.getLatitude())+","+Double.toString(location.getLongitude()));
+        this.location = location;
     }
 
     @Override

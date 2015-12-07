@@ -26,6 +26,8 @@ public class DataHandler {
     private String upVote = "http://student.labranet.jamk.fi/~H4113/kebapi/api/comment/";
     private String googleApiLatLng = "http://maps.google.com/maps/api/geocode/json?address=";
     private String googleApiAddress = "http://maps.google.com/maps/api/geocode/json?latlng=";
+    private String rate = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant/rate";
+
 
     public interface RequestCallback{
         void onSuccess(String result);
@@ -65,8 +67,21 @@ public class DataHandler {
         });
     }
 
-    public void postCommentVote(String commentId, final RequestCallback requestCallback){
-        HashMap<String,String> params = new HashMap<>();
+    public void postRestaurantRate(final Map<String,String> params, final RequestCallback requestCallback){
+        HttpRequest.httpPostRequest(context, rate, params, new HttpRequest.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                requestCallback.onSuccess(result);
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                requestCallback.onError(error);
+            }
+        });
+    }
+
+    public void postCommentVote(String commentId, Map<String,String> params, final RequestCallback requestCallback){
         HttpRequest.httpPostRequest(context, upVote + commentId, params, new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {

@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.support.design.widget.TabLayout;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         this.dataHandler = new DataHandler(this);
         g = (Globals)getApplication();
+
         gpsTracker = new GPSTracker(getApplicationContext());
         requestPermissions();
         gpsTracker.requestLocation();
@@ -56,8 +58,7 @@ public class MainActivity extends AppCompatActivity{
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
+        final PagerAdapter adapter = new PagerAdapter (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

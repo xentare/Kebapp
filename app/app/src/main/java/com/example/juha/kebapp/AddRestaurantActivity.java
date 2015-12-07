@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.android.gms.maps.model.LatLng;
@@ -52,15 +53,17 @@ public class AddRestaurantActivity extends AppCompatActivity {
         Map<String,String> params = new HashMap<>();
         EditText address = (EditText)findViewById(R.id.editTextAddRestaurantAddress);
         EditText name = (EditText)findViewById(R.id.editTextAddRestaurantName);
+        EditText rating = (EditText)findViewById(R.id.ratingEditText);
         params.put("name",name.getText().toString());
         params.put("address", address.getText().toString());
         params.put("latitude",Double.toString(latLng.latitude));
         params.put("longitude", Double.toString(latLng.longitude));
+        params.put("rating", rating.getText().toString());
 
         dataHandler.postRestaurant(params, new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String result) {
-
+                Toast.makeText(getApplicationContext(), "Restaurant added!", Toast.LENGTH_SHORT).show();
             }
 
             @Override

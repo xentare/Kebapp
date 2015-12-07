@@ -2,6 +2,7 @@ package com.example.juha.kebapp.Fragments;
 
 import android.content.Intent;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 
 import com.android.volley.VolleyError;
 import com.example.juha.kebapp.DataHandler;
+import com.example.juha.kebapp.GPSTracker;
 import com.example.juha.kebapp.JSONParser;
 import com.example.juha.kebapp.MainActivity;
 import com.example.juha.kebapp.R;
@@ -46,6 +48,7 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
                 getView().findViewById(R.id.spinner).setVisibility(View.GONE);
                 setRestaurants(restaurants);
             }
+
             @Override
             public void onError(VolleyError error) {
                 //TODO: Handle errors

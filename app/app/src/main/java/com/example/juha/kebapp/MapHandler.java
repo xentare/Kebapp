@@ -94,8 +94,6 @@ public class MapHandler {
 
     private void addRestaurantMarker(Restaurant restaurant) {
 
-        MarkerIcon icon = new MarkerIcon(restaurant.name, restaurant.stars);
-
         MarkerOptions options = new MarkerOptions()
                 .position(new LatLng(restaurant.latitude, restaurant.longitude))
                 .title(restaurant.name)

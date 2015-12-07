@@ -33,12 +33,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextAddRestaurantAddress" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get address from my location"
-        android:onClick="getAddressFromLocationClick"
-        android:id="@+id/buttonGetAddressFromLocation" />
+        android:text="Rating"
+        android:id="@+id/textView5" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingEditText"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"

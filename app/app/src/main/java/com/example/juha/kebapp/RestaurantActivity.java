@@ -2,6 +2,7 @@ package com.example.juha.kebapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.VolleyError;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,19 +27,21 @@ public class RestaurantActivity extends AppCompatActivity implements AdapterView
     private ArrayList<Comment> comments;
     private DataHandler dataHandler;
     private Restaurant restaurant;
+    private String androidId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         comments = new ArrayList<>();
         adapter = new CommentArrayAdapter(getApplicationContext(),comments);
+        androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         setContentView(R.layout.restaurant_activity);
         Bundle extras = getIntent().getExtras();
         restaurant = extras.getParcelable("restaurant");
         TextView textView = (TextView)findViewById(R.id.restaurantName);
         textView.setText(restaurant.name);
-        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarRestaurantActivity);
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBar);
         ratingBar.setRating(restaurant.stars);
 
 
@@ -115,14 +120,37 @@ public class RestaurantActivity extends AppCompatActivity implements AdapterView
             }
         });
     }
+    /*
+    * TODO: Hardcoded strings...
+     */
+    public void rateButtonClick(View view){
+        Map<String,String> params = new HashMap<>();
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+        params.put("rating", Float.toString(ratingBar.getRating()));
+        params.put("android_id", androidId);
+        params.put("restaurant_id",restaurant.id);
+        dataHandler.postRestaurantRate(params, new DataHandler.RequestCallback() {
+            @Override
+            public void onSuccess(String result) {
+                Toast.makeText(getApplicationContext(),"Rate submitted",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"You have already rated this place!",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        dataHandler.postCommentVote(comments.get(position).id, new DataHandler.RequestCallback() {
+        Map<String,String> params = new HashMap<>();
+        params.put("android_id",androidId);
+        dataHandler.postCommentVote(comments.get(position).id,params, new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String result) {
                 getComments();
-                Log.d("VOTE", "Upvote posted");
+
             }
 
             @Override

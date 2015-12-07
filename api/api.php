@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     switch($endpoint){
         case 'restaurant':
-            echo restaurantPostQuery();
+            echo restaurantPostQuery($args);
             break;
         case 'comment':
             echo commentPostQuery($args);
@@ -83,20 +83,35 @@ function commentPostQuery($args)
     }
 }
 
-function restaurantPostQuery(){
+function restaurantPostQuery($args){
 
     $MY_DB = new DATABASE_CONNECT();
     $mysqli = $MY_DB->connect();
 
-    $mysqli->real_escape_string($_POST['name']);
-    $mysqli->real_escape_string($_POST['address']);
-
-    if(isset($_POST['name'])){
+    if($args[0] == 'rate'){
+        $mysqli->real_escape_string($_POST['android_id']);
+        $query = "SELECT * FROM restaurants_ratings WHERE restaurant_id = '".$_POST['restaurant_id']."' AND android_id = '".$_POST['android_id']."'";
+        $query = $mysqli->query($query);
+        if(mysqli_num_rows($query) == 0){
+            $query = "INSERT INTO restaurants_ratings (restaurant_id, rating, android_id) VALUES (?,?,?)";
+            $statement = $mysqli->prepare($query);
+            $statement->bind_param('ids', $_POST['restaurant_id'], $_POST['rating'], $_POST['android_id']);
+            return fetch($statement->execute());
+        } else {
+            return error(json_last_error_msg());
+        }
+    } else {
         $query = "INSERT INTO restaurants (name, latitude, longitude, address, rating) VALUES (?,?,?,?,0)";
-
         $statement = $mysqli->prepare($query);
-        $statement->bind_param('sdds',$_POST['name'],$_POST['latitude'],$_POST['longitude'],$_POST['address']);
-        return fetch($statement->execute());
+        $statement->bind_param('sdds', $_POST['name'], $_POST['latitude'], $_POST['longitude'], $_POST['address']);
+        $statement->execute();
+
+        $id = $statement->insert_id;
+        $query = "INSERT INTO restaurants_ratings (rating, restaurant_id) VALUES (?, $id)";
+        $statement = $mysqli->prepare($query);
+        $statement->bind_param('d',$_POST['rating']);
+        $statement->execute();
+
     }
 }
 
@@ -106,9 +121,13 @@ function restaurantGetQuery($args){
     $mysqli = $MY_DB->connect();
     //$mysqli->real_escape_string($args[0]);
 
-
     if(!isset($args[0])){
-        $query = "SELECT * FROM restaurants";
+        $query = "select r.restaurant_id, r.name, r.latitude, r.longitude, r.address,
+                 AVG(rr.rating) as rating
+                 from restaurants r
+                 inner join restaurants_ratings rr
+                 on r.restaurant_id = rr.restaurant_id
+                 group by r.restaurant_id";
     } else if($args[0] == "search" && isset($args[1])){
         $query = "SELECT * FROM restaurants WHERE name LIKE ('%$args[1]%') OR address LIKE ('%$args[1]%')";
     } else if($args[0] == "openings" && isset($args[1])){
@@ -118,6 +137,10 @@ function restaurantGetQuery($args){
     return fetch($mysqli->query($query));
 }
 
+function error($error){
+    header('Content-type: application/json');
+    return json_encode($error);
+}
 
 function fetch($result){
     $rows = array();
