@@ -45,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             echo restaurantPostQuery();
             break;
         case 'comment':
-            echo commentPostQuery();
+            echo commentPostQuery($args);
             break;
     }
 }
@@ -64,20 +64,23 @@ function commentGetQuery($args){
 
 }
 
-function commentPostQuery(){
+function commentPostQuery($args)
+{
     $MY_DB = new DATABASE_CONNECT();
     $mysqli = $MY_DB->connect();
     $mysqli->real_escape_string($_POST['text']);
 
-    if(isset($_POST['restaurant_id'])){
+    if (isset($_POST['restaurant_id'])) {
         $query = "INSERT INTO comments (restaurant_id, text) VALUES (?,?)";
         $mysqli->query($query);
 
         $statement = $mysqli->prepare($query);
-        $statement->bind_param('is',$_POST['restaurant_id'],$_POST['text']);
+        $statement->bind_param('is', $_POST['restaurant_id'], $_POST['text']);
         return fetch($statement->execute());
+    } else if(isset($args[0])){
+        $query = "UPDATE comments SET up_votes=up_votes+1 WHERE comment_id='$args[0]'";
+        return fetch($mysqli->query($query));
     }
-
 }
 
 function restaurantPostQuery(){

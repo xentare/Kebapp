@@ -11,11 +11,11 @@ import java.util.Objects;
 /**
  * Created by Juha on 08/11/15.
  */
-public class MarkerIcon {
+class MarkerIcon {
 
-    Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-    Bitmap bmp = Bitmap.createBitmap(200,200, conf);
-    Canvas canvas = new Canvas(bmp);
+    private Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+    private Bitmap bmp = Bitmap.createBitmap(200,200, conf);
+    private Canvas canvas = new Canvas(bmp);
 
     public MarkerIcon(String name, int stars){
         Paint color = new Paint();

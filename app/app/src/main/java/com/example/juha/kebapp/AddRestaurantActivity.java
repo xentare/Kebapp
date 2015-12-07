@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class AddRestaurantActivity extends AppCompatActivity {
 
-    DataHandler dataHandler;
+    private DataHandler dataHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
         });
     }
 
-    public void postRestaurant(LatLng latLng){
+    private void postRestaurant(LatLng latLng){
         Map<String,String> params = new HashMap<>();
         EditText address = (EditText)findViewById(R.id.editTextAddRestaurantAddress);
         EditText name = (EditText)findViewById(R.id.editTextAddRestaurantName);

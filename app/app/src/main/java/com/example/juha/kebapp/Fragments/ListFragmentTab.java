@@ -21,6 +21,7 @@ import com.example.juha.kebapp.R;
 import com.example.juha.kebapp.Restaurant;
 import com.example.juha.kebapp.RestaurantActivity;
 import com.example.juha.kebapp.RestaurantArrayAdapter;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,8 +32,8 @@ import java.util.List;
  */
 public class ListFragmentTab extends Fragment implements AdapterView.OnItemClickListener{
 
-    RestaurantArrayAdapter adapter;
-    ArrayList<Restaurant> restaurants;
+    private RestaurantArrayAdapter adapter;
+    private ArrayList<Restaurant> restaurants;
 
     /*
     * Requests all restaurants and puts them in the listview. Also sets distance in km based on current location and sorts the list.
@@ -53,11 +54,6 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
         super.onActivityCreated(savedInstanceState);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,10 +71,12 @@ public class ListFragmentTab extends Fragment implements AdapterView.OnItemClick
         ((MainActivity)getActivity()).showRestaurantActivity(restaurants.get(position));
     }
 
-    public void setRestaurants(String restaurants){
+    private void setRestaurants(String restaurants){
         Location location = ((MainActivity) getActivity()).getGpsTracker().getLocation();
         if(location != null) {
             adapter.addAll(Restaurant.setDistances(JSONParser.parseRestaurants(restaurants), location));
+        } else {
+            adapter.addAll(JSONParser.parseRestaurants(restaurants));
         }
     }
 }

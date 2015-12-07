@@ -66,7 +66,7 @@ public class MapHandler {
     /*
     * Load and place markers and init camera position
      */
-    public void initialize() {
+    private void initialize() {
         Log.d("MAP","Initializing maphandler!");
         Location location = activity.getGpsTracker().getLocation();
         if(location != null){
@@ -92,7 +92,7 @@ public class MapHandler {
         void onMarkerClick(Marker marker);
     }
 
-    public void addRestaurantMarker(Restaurant restaurant) {
+    private void addRestaurantMarker(Restaurant restaurant) {
 
         MarkerIcon icon = new MarkerIcon(restaurant.name, restaurant.stars);
 

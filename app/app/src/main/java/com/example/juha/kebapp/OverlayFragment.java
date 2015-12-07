@@ -23,7 +23,7 @@ import org.w3c.dom.Text;
  */
 public class OverlayFragment extends Fragment {
 
-    DataHandler dataHandler;
+    private DataHandler dataHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

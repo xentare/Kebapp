@@ -28,7 +28,7 @@ public class Restaurant implements Parcelable {
 
     }
 
-    public static class DistanceComparator implements Comparator<Restaurant>{
+    private static class DistanceComparator implements Comparator<Restaurant>{
         @Override
         public int compare(Restaurant lhs, Restaurant rhs) {
           return lhs.distance.compareTo(rhs.distance);
@@ -44,7 +44,7 @@ public class Restaurant implements Parcelable {
         this.stars = stars;
     }
 
-    protected Restaurant(Parcel in) {
+    private Restaurant(Parcel in) {
         id = in.readString();
         stars = in.readInt();
         name = in.readString();

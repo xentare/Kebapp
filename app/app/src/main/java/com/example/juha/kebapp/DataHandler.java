@@ -17,14 +17,15 @@ import java.util.Map;
  */
 public class DataHandler {
 
-    Context context;
-    Activity activity;
-    String restaurants = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant";
-    String search = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant/search/";
-    String openings = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant/openings/";
-    String comments = "http://student.labranet.jamk.fi/~H4113/kebapi/api/comment/";
-    String googleApiLatLng = "http://maps.google.com/maps/api/geocode/json?address=";
-    String googleApiAddress = "http://maps.google.com/maps/api/geocode/json?latlng=";
+    private Context context;
+    private Activity activity;
+    private String restaurants = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant";
+    private String search = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant/search/";
+    private String openings = "http://student.labranet.jamk.fi/~H4113/kebapi/api/restaurant/openings/";
+    private String comments = "http://student.labranet.jamk.fi/~H4113/kebapi/api/comment/";
+    private String upVote = "http://student.labranet.jamk.fi/~H4113/kebapi/api/comment/";
+    private String googleApiLatLng = "http://maps.google.com/maps/api/geocode/json?address=";
+    private String googleApiAddress = "http://maps.google.com/maps/api/geocode/json?latlng=";
 
     public interface RequestCallback{
         void onSuccess(String result);
@@ -52,6 +53,21 @@ public class DataHandler {
 
     public void requestAddressFromLatLong(String LatLng, final RequestCallback requestCallback){
         HttpRequest.httpGetRequest(context, googleApiAddress + LatLng, new HttpRequest.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                requestCallback.onSuccess(result);
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
+    }
+
+    public void postCommentVote(String commentId, final RequestCallback requestCallback){
+        HashMap<String,String> params = new HashMap<>();
+        HttpRequest.httpPostRequest(context, upVote + commentId, params, new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 requestCallback.onSuccess(result);

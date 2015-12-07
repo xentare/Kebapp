@@ -19,7 +19,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.juha.kebapp.Fragments.GPSDialogFragment;
@@ -27,9 +26,9 @@ import com.google.android.gms.maps.model.Marker;
 
 public class MainActivity extends AppCompatActivity{
 
-    Globals g;
-    GPSTracker gpsTracker;
-    MapHandler mapHandler;
+    private Globals g;
+    private GPSTracker gpsTracker;
+    private MapHandler mapHandler;
     private DataHandler dataHandler;
 
     @Override
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity{
         g = (Globals)getApplication();
         gpsTracker = new GPSTracker(getApplicationContext());
         requestPermissions();
-        gpsTracker.getLocation();
+        gpsTracker.requestLocation();
 
         if (!gpsTracker.isGPSEnabled) {
             Log.d("GPS", "GPS alert dialog");
@@ -82,10 +81,10 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        gpsTracker.getLocation();
+        gpsTracker.requestLocation();
     }
 
-    public void showGPSDialog(){
+    private void showGPSDialog(){
         DialogFragment dialogFragment = new GPSDialogFragment();
         dialogFragment.show(getFragmentManager(), "dialog");
     }
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity{
         startActivity(restaurantIntent);
     }
 
-    public void showAddRestaurantActivity(View view){
+    private void showAddRestaurantActivity(){
         Intent intent = new Intent(MainActivity.this,AddRestaurantActivity.class);
         startActivity(intent);
     }
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_addRestaurant) {
-            //showAddRestaurantActivity();
+            showAddRestaurantActivity();
             //return true;
         }
 
@@ -163,11 +162,6 @@ public class MainActivity extends AppCompatActivity{
         transaction.commit();
     }
 
-
-    public void onClickGPS(View view) {
-
-    }
-
     /**
      * Remember to put gpsTracker.getLocation() here somehow
      * @param requestCode
@@ -192,7 +186,7 @@ public class MainActivity extends AppCompatActivity{
     /**
     * Request permissions to use GPS and network coarse location
     */
-    public void requestPermissions(){
+    private void requestPermissions(){
         int coarsePermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
         int gpsPermissionCheck = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION);
         Log.d("GPS","Checking permissions");
@@ -208,6 +202,6 @@ public class MainActivity extends AppCompatActivity{
         return this.dataHandler;
     }
 
-    public GPSTracker getGpsTracker() {return this.gpsTracker;};
+    public GPSTracker getGpsTracker() {return this.gpsTracker;}
 
 }

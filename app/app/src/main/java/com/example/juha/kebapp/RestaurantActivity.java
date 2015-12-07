@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -17,12 +18,12 @@ import java.util.Map;
 /**
  * Created by Juha on 16/11/15.
  */
-public class RestaurantActivity extends AppCompatActivity {
+public class RestaurantActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
-    CommentArrayAdapter adapter;
-    ArrayList<String> comments;
-    DataHandler dataHandler;
-    Restaurant restaurant;
+    private CommentArrayAdapter adapter;
+    private ArrayList<Comment> comments;
+    private DataHandler dataHandler;
+    private Restaurant restaurant;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,18 +44,25 @@ public class RestaurantActivity extends AppCompatActivity {
 
         ListView listView = (ListView)findViewById(R.id.commentsListView);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
     }
 
-    public void getData(){
+    private void getData(){
         if(dataHandler == null) {
             dataHandler = new DataHandler(this);
         }
+        getOpenings();
+        getComments();
+    }
 
+    private void getOpenings(){
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         dataHandler.requestRestaurantOpenings(restaurant.id, new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String result) {
-                TextView timestamp = (TextView)findViewById(R.id.openingHours);
-                if(result != "  []") {
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                TextView timestamp = (TextView) findViewById(R.id.openingHours);
+                if (JSONParser.parseOpenings(result) != null) {
                     timestamp.append(JSONParser.parseOpenings(result));
                 }
             }
@@ -64,10 +72,15 @@ public class RestaurantActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-        dataHandler.requestComments(restaurant.id,new DataHandler.RequestCallback() {
+    private void getComments(){
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+        dataHandler.requestComments(restaurant.id, new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String result) {
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                adapter.clear();
                 adapter.addAll(JSONParser.parseComments(result));
             }
 
@@ -78,20 +91,21 @@ public class RestaurantActivity extends AppCompatActivity {
         });
     }
 
-    /*
-    *TODO: Make cleaver update of Comments when posted
-     */
     public void postCommentButtonClicked(View view){
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+
         Map<String,String> params = new HashMap<>();
-        EditText editText = (EditText)findViewById(R.id.commentBox);
+        final EditText editText = (EditText)findViewById(R.id.commentBox);
         params.put("restaurant_id",restaurant.id);
-        params.put("text",editText.getText().toString());
+        params.put("text", editText.getText().toString());
 
         dataHandler.postComment(params, new DataHandler.RequestCallback() {
             @Override
             public void onSuccess(String result) {
-                Log.d("POST","Comment posted");
-                //getData();
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                Log.d("POST", "Comment posted");
+                editText.setText("");
+                getComments();
                 //adapter.notifyDataSetChanged();
             }
 
@@ -102,4 +116,20 @@ public class RestaurantActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        dataHandler.postCommentVote(comments.get(position).id, new DataHandler.RequestCallback() {
+            @Override
+            public void onSuccess(String result) {
+                getComments();
+                Log.d("VOTE", "Upvote posted");
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
+
+    }
 }

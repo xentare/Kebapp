@@ -20,22 +20,22 @@ public class GPSTracker extends Service implements LocationListener {
     private final Context context;
 
     boolean isGPSEnabled = false;
-    boolean isNetworkEnabled = false;
-    boolean canGetLocation = false;
-    Location location;
-    double latitude;
-    double longitude;
+    private boolean isNetworkEnabled = false;
+    private boolean canGetLocation = false;
+    private Location location;
+    private double latitude;
+    private double longitude;
 
     private static final long MIN_DISTANCE_CHANGE_DOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60;
 
-    protected LocationManager locationManager;
+    private LocationManager locationManager;
 
     public GPSTracker(Context context) {
         this.context = context;
     }
 
-    public Location getLocation() {
+    public Location requestLocation() {
 
         try {
             locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
@@ -46,11 +46,7 @@ public class GPSTracker extends Service implements LocationListener {
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-            if(!isNetworkEnabled && !isGPSEnabled) {
-                /*Intent gpsOptionsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(gpsOptionsIntent);
-                Log.d("GPS/NETWORK","Providers not enabled prompting intent");*/
-            } else {
+            if(isNetworkEnabled || isGPSEnabled) {
                 this.canGetLocation = true;
                 if (isNetworkEnabled) {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_DOR_UPDATES, this);
@@ -87,6 +83,10 @@ public class GPSTracker extends Service implements LocationListener {
         } catch(SecurityException e){
             e.printStackTrace();
         }
+    }
+
+    public Location getLocation(){
+        return this.location;
     }
 
     @Override

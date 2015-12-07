@@ -68,15 +68,20 @@ public class JSONParser {
         return null;
     }
 
-    public static List<String> parseComments(String data){
-        List<String> comments = new ArrayList<>();
+    public static List<Comment> parseComments(String data){
+        List<Comment> comments = new ArrayList<>();
 
         try{
             JSONArray array = new JSONArray(data);
 
             for(int i = 0;i<array.length();i++){
                 JSONObject obj = array.getJSONObject(i);
-                comments.add(obj.getString("text"));
+                Comment comment = new Comment();
+                comment.text = obj.getString("text");
+                comment.id = obj.getString("comment_id");
+                comment.upVotes = obj.getString("up_votes");
+                comment.downVotes = obj.getString("down_votes");
+                comments.add(comment);
             }
             return comments;
         } catch (JSONException e) {
@@ -91,8 +96,7 @@ public class JSONParser {
             JSONArray array = obj.getJSONArray("results");
             JSONObject object = array.getJSONObject(0);
             object = object.getJSONObject("geometry").getJSONObject("location");
-            LatLng latLng = new LatLng(object.getDouble("lat"),object.getDouble("lng"));
-            return latLng;
+            return new LatLng(object.getDouble("lat"),object.getDouble("lng"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

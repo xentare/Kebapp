@@ -11,11 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
-import android.widget.Spinner;
 
 import com.android.volley.VolleyError;
 import com.example.juha.kebapp.DataHandler;
-import com.example.juha.kebapp.HttpRequest;
 import com.example.juha.kebapp.JSONParser;
 import com.example.juha.kebapp.MainActivity;
 import com.example.juha.kebapp.R;
@@ -29,8 +27,8 @@ import java.util.ArrayList;
  */
 public class SearchFragmentTab extends Fragment implements AdapterView.OnItemClickListener{
 
-    RestaurantArrayAdapter adapter;
-    ArrayList<Restaurant> restaurants;
+    private RestaurantArrayAdapter adapter;
+    private ArrayList<Restaurant> restaurants;
 
     @Nullable
     @Override
@@ -42,6 +40,7 @@ public class SearchFragmentTab extends Fragment implements AdapterView.OnItemCli
         adapter = new RestaurantArrayAdapter(getContext(),restaurants);
         ListView listView = (ListView)view.findViewById(R.id.listView2);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
 
         final ProgressBar spinner = (ProgressBar)view.findViewById(R.id.spinner);
         final SearchView searchView = (SearchView)view.findViewById(R.id.searchView);
@@ -74,10 +73,12 @@ public class SearchFragmentTab extends Fragment implements AdapterView.OnItemCli
         return view;
     }
 
-    public void setRestaurants(String restaurants){
+    private void setRestaurants(String restaurants){
         Location location = ((MainActivity) getActivity()).getGpsTracker().getLocation();
         if(location != null) {
             adapter.addAll(Restaurant.setDistances(JSONParser.parseRestaurants(restaurants), location));
+        } else {
+            adapter.addAll(JSONParser.parseRestaurants(restaurants));
         }
     }
 

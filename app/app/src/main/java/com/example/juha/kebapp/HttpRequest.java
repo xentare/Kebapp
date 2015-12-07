@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * Created by Juha on 31/10/15.
  */
-public class HttpRequest{
+class HttpRequest{
 
     /**
     * Uses Volley to send HTTP request. Implements callback interface to handle responses

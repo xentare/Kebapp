@@ -11,9 +11,9 @@ import com.example.juha.kebapp.Fragments.SearchFragmentTab;
 /**
  * Created by Juha on 12.11.2015.
  */
-public class PagerAdapter extends FragmentStatePagerAdapter {
+class PagerAdapter extends FragmentStatePagerAdapter {
 
-    int mNumOfTabs;
+    private int mNumOfTabs;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs){
         super(fm);
@@ -24,14 +24,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                ListFragmentTab tab1 = new ListFragmentTab();
-                return tab1;
+                return new ListFragmentTab();
             case 1:
-                SearchFragmentTab tab2 = new SearchFragmentTab();
-                return tab2;
+                return new SearchFragmentTab();
             case 2:
-                MapFragmentTab tab3 = new MapFragmentTab();
-                return tab3;
+                return new MapFragmentTab();
             default:
                 return null;
         }
